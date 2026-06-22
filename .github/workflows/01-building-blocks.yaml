@@ -5,14 +5,14 @@ on: push
 jobs:
     echo-hello:
         runs-on: ubuntu latest
-        steps:
+        steps: 
             - name: Say Hello
-            run: echo "Hello, world!"
+              run: echo "Hello, world!"
     echo-goodbye:
         runs-on: ubuntu latest
         steps:
             - name: Failed step
-            run: |
+              run: |
                 echo "I will fail"
                 exit 1
             - name: Say Goodbye
