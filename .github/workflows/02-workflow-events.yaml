@@ -1,0 +1,7 @@
+name: 02 - Workflow Events
+
+on: push
+    echo: ubuntu-latest
+    steps:
+        - name: Show the trigger
+        run: echo "This workflow was triggered by a push event."
