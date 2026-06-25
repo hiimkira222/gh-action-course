@@ -13,7 +13,7 @@ env:
     MY_OVERWRITTEN_VAR: 'workflow'
 
 
-run-name: "06 - Contexts | Debug - ${{ inputs.debug }}"
+run-name: 06 - Contexts | Debug - ${{ inputs.debug }}
 
 jobs:
     echo-data:
