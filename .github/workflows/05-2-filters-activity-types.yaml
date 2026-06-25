@@ -1,0 +1,13 @@
+name: 05 - 2 - Filters Activity Types
+
+on:
+    pull_request:
+        types: closed
+        branches: main
+
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: run echo
+              run: echo "RUnning whenever a PR is closed"
