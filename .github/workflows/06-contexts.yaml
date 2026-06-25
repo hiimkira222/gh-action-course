@@ -3,7 +3,6 @@ on:
     workflow_dispatch:
             inputs:
                 debug:
-                    description: Debugging flag
                     type: boolean
                     default: false
 
