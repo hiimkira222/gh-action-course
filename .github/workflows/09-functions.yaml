@@ -11,7 +11,6 @@ jobs:
               run: echo "PR title is ${{ github.event.pull_request.title }}"
             - name: Print PR labels
               run: | 
-                  echo " PR labels are: "
                   cat << E0F
                   ${{ toJSON(github.event.pull_request.labels) }}"
                   E0F
