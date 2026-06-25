@@ -11,8 +11,9 @@ jobs:
               run: echo "PR title is ${{ github.event.pull_request.title }}"
             - name: Print PR labels
               run: | 
+                  echo " PR labels are: "
                   cat << E0F
-                  echo "PR labels are ${{ toJSON(github.event.pull_request.labels) }}"
+                  ${{ toJSON(github.event.pull_request.labels) }}"
             - name: Bug step
               if: ${{ success() && contains(github.event.pull_request.title, 'fix') }}
               run: echo "I am a bug fix"
