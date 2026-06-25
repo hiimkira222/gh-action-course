@@ -14,6 +14,7 @@ jobs:
                   echo " PR labels are: "
                   cat << E0F
                   ${{ toJSON(github.event.pull_request.labels) }}"
+                  E0F
             - name: Bug step
               if: ${{ success() && contains(github.event.pull_request.title, 'fix') }}
               run: echo "I am a bug fix"
