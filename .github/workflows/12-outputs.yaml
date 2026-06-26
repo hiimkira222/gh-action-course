@@ -23,8 +23,8 @@ jobs:
               run: |
                 echo "$GITHUB_OUTPUTS"
                 echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
-                echo "output1=value1 >> GITHUB_OUTPUTS"
-                echo "output2=value2 >> GITHUB_OUTPUTS"
+                echo "output1=value1" >> "$GITHUB_OUTPUTS"
+                echo "output2=value2" >> "$GITHUB_OUTPUTS"
                 cat "$GITHUB_OUTPUTS"
 
     deploy:
