@@ -11,8 +11,10 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        env:
-            working-directory: 13-caching
+        defaults:
+            run:
+                working-directory: 13-caching/template
+        
         steps:
             - name: Checkout Code
               uses: actions/checkout@v7
