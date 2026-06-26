@@ -12,7 +12,7 @@ jobs:
     build:
         runs-on: ubuntu-latest
         env:
-            working-directory: 13-caching/react-app
+            working-directory: 13-caching
         steps:
             - name: Checkout Code
               uses: actions/checkout@v7
