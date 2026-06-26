@@ -7,6 +7,13 @@ on:
                 type: boolean
                 default: true
                 description: Whether to execute cache step
+            node-version:
+                type: choice
+                options:
+                    - '24.x'
+                    - '26.x'
+                default: '24.x'
+                description: Node version
 
 jobs:
     build:
@@ -18,13 +25,26 @@ jobs:
         steps:
             - name: Checkout Code
               uses: actions/checkout@v7
+
             - name: Setup Node
               uses: actions/setup-node@v6
               with:
-                node-version: 24.x
+                node-version: ${{ inputs.node-version }}
+
+            - name: Download cached dependencies
+              if: ${{ inputs.use-cache }}
+              uses: actions/cache@v6
+              id: cache
+              with:
+                path: 13-caching/template/node_modules
+                key: deps-node-modules-${{ hashFiles('13-caching/template/package-lock.json') }}
+            
             - name: Install dependencies
+              if: ${{ steps.cache.outputs.cache-hit == 'true' }}
               run: npm ci
+
             - name: Testing
               run: npm run build
+
             - name: Deploying to nonprod
               run: echo "Deploying to nonprod"
