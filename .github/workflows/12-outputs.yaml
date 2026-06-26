@@ -1,4 +1,4 @@
-name: Working with Outputs
+name: 12 - Working with Outputs
 
 on:
     workflow_dispatch:
@@ -13,7 +13,7 @@ on:
 jobs:
     build:
         outputs: 
-            build-status: ${{ steps.buid.outputs.status }}
+            build-status: ${{ steps.build.outputs.status }}
         runs-on: ubuntu-latest
         steps:
             - name: Print GITHUB_OUTPUT path
