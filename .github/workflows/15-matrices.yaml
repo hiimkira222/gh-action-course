@@ -50,6 +50,10 @@ jobs:
                 include:
                   - opacity: 50
                   - colors: red
+                    opacity: 75
+                  - shape: circle
+                    opacity: 100
+                  - colors: red
                     shape: triangle
         name: ${{ matrix.colors }}-${{ matrix.shape }}-${{ matrix.size }}-${{ matrix.opacity }}
         steps:
