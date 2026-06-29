@@ -55,9 +55,13 @@ jobs:
                     opacity: 100
                   - colors: red
                     shape: triangle
+                  - colors: green
+                    shape: circle
+                    size: medium
                 exclude:
-                  - opacity: 75
-                  
+                  - colors: green
+                    shape: circle
+
 
         name: ${{ matrix.colors }}-${{ matrix.shape }}-${{ matrix.size }}-${{ matrix.opacity }}
         steps:
