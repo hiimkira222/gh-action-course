@@ -36,7 +36,7 @@ jobs:
             - name: Calculate cache key
               id: cache_key
               run:
-                echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/template/package-lock.json')}}" >> $"GITHUB_OUTPUT"
+                echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/template/package-lock.json')}}" >> "$GITHUB_OUTPUT"
 
             - name: Download cache dependencies
               uses: actions/cache@v6
