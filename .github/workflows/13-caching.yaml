@@ -36,13 +36,13 @@ jobs:
             - name: Calculate cache key
               id: cache_key
               run:
-                echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/template/package-lock.json')}}" >> $"GITHUB_OUTPUTS"
+                echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/template/package-lock.json')}}" >> $"GITHUB_OUTPUT"
 
             - name: Download cache dependencies
               uses: actions/cache@v6
               with:
                 path: 13-caching/template/node_modules
-                key: ${{ steps.cache_key.outputs.deps-cache-key }}
+                key: ${{ steps.cache_key.outputs.CACHE_KEY }}
 
     build:
         runs-on: ubuntu-latest
