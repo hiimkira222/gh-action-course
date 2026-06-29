@@ -5,10 +5,10 @@ on:
 
 jobs:
     backwards-compatibility:
-        name: ${{ matrix.os }}-${{ matrix.node-versions }}
+        name: ${{ matrix.os }}-${{ matrix.node-version }}
         strategy:
             matrix:
-                node-versions: [24.x, 26.x]
+                node-version: [24.x, 26.x]
                 os:
                     - ubuntu-latest
                     - windows-latest
@@ -26,7 +26,7 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v6
               with: 
-                node-version: ${{ matrix.node-versions }}
+                node-version: ${{ matrix.node-version }}
 
             - name: Fail if experimental
               if: matrix.tag == 'experimental'
@@ -34,7 +34,7 @@ jobs:
 
             - name: Perform some tests
               run: |
-                echo "Running tests on OS ${{ matrix.os }} and NodeJS ${{ matrix.node-versions }}"
+                echo "Running tests on OS ${{ matrix.os }} and NodeJS ${{ matrix.node-version }}"
                 sleep 10 
               
             - name: Upload test results
