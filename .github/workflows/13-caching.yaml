@@ -42,7 +42,7 @@ jobs:
               uses: actions/cache@v6
               with:
                 path: 13-caching/template/node_modules
-                key: ${{ steps.cache_key.outputs.CACHE_KEY }}
+                key: ${{ steps.cache_key.outputs.deps-cache-key }}
 
     build:
         runs-on: ubuntu-latest
