@@ -26,7 +26,7 @@ runs:
       id: cache
       with:
         path: ${{ inputs.working-dir }}/node_modules
-        key: your-key-prefix-${{ hashFiles(format('{0}/{1}', inputs.working-dir, 'package-lock.json'))}}
+        key: your-key-prefix-${{ hashFiles(format('{0}/{1}',inputs.target-env, inputs.working-dir, 'package-lock.json'))}}
     - name: Install dependencies (prod)
       if: ${{ steps.cache.outputs.cache-hit != 'true' &&  inputs.target-env == 'prod'}}
       shell: bash
