@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       target-env:
-        description: Which env will be used for deployment
+        description: Which env will be used to target deps installation
         type: choice
         options:
           - dev
