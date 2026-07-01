@@ -13,6 +13,7 @@ inputs:
   target-env:
     description: '"dev" or "prod". Controls whether dev deps are installed'
     default: dev
+    required: false
 
 runs:
   using: composite
@@ -26,14 +27,20 @@ runs:
       id: cache
       with:
         path: ${{ inputs.working-dir }}/node_modules
-        key: your-key-prefix-${{ hashFiles(format('{0}/{1}',inputs.target-env, inputs.working-dir, 'package-lock.json'))}}
-    - name: Install dependencies (prod)
-      if: ${{ steps.cache.outputs.cache-hit != 'true' &&  inputs.target-env == 'prod'}}
-      shell: bash
-      run: npm ci
-      working-directory: ${{ inputs.working-dir}}
+        key: your-key-prefix-${{ hashFiles(format('{0}/{1}/{2}',inputs.target-env, inputs.working-dir, 'package-lock.json'))}}
     - name: Install dependencies (dev)
       if: ${{ steps.cache.outputs.cache-hit != 'true' &&  inputs.target-env == 'dev'}}
       shell: bash
+      run: npm ci
+      working-directory: ${{ inputs.working-dir}}
+    - name: Install dependencies (prod)
+      if: ${{ steps.cache.outputs.cache-hit != 'true' &&  inputs.target-env != 'dev'}}
+      shell: bash
       run: npm ci--omit=dev
       working-directory: ${{ inputs.working-dir}}
+
+    #/ The 2 ifs can also be used in a single step like:
+    # - name: Install dependencies
+    #   if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+    #   shell: bash
+    #   run: #{{ inputs.target-env == 'prod' && 'npm ci' || 'npm ci --omit=dev'}}
