@@ -1,0 +1,6 @@
+name: Update NPM Dependencies
+description: This action updates the NPM dependencies of a project and creates a pull request with the changes.
+
+runs:
+  using: node24
+  main: index.js
