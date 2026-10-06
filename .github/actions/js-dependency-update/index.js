@@ -8,19 +8,19 @@ const setupGit = async () => {
 };
 const validateBranchName = ({ branchName }) => /^[a-zA-Z0-9_\-\.\/]+$/.test(branchName);
 const validateDirectoryName = ({ dirName }) => /^[a-zA-Z0-9_\-\/]+$/.test(dirName);
-const setupLogger = ({debug, prefix} = {debug: false, prefix: ''}) => {
+const setupLogger = ({debug, prefix} = {debug: false, prefix: ''}) => ({
     debug: (message) => {
         if(debug) {
             core.info(`DEBUG ${prefix}${prefix ? ' : ' : ''}${message}`);
         }
-    }
+    },
     info: (message) => {
         core.info(`${prefix}${prefix ? ' : ' : ''}${message}`);
-    }
+    },
     error: (message) => {
         core.error(`${prefix}${prefix ? ' : ' : ''}${message}`);
     }
-};
+});
 async function run() {
     const baseBranch = core.getInput('base-branch', { required: true});
     const headBranch = core.getInput('head-branch', { required: true});
