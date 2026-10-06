@@ -26,12 +26,16 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Setup Node and Install Dependencies
+        id: setup-deps
         uses: ./.github/actions/composite-cache-deps
         with:
             node-version: 24.x
             working-dir: ${{ env.working-directory }}
             target-env: ${{ inputs.target-env }}
-
+      - name: Print setup deps outputs
+        run: |
+          echo "Installed deps: ${{ steps.setup-deps.outputs.installed-deps }}"
+          
       - name: Test
         run: npm run test
 

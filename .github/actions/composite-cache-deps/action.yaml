@@ -15,6 +15,14 @@ inputs:
     default: dev
     required: false
 
+outputs:
+  installed-deps:
+    description: 'Whether deps were installed or not'
+    value: ${{steps.cache.outputs.cache-hit != 'true'}}
+  random-output:
+    description: 'Random output to demonstrate outputs'
+    value: ${{steps.random-output.outputs.random}}
+    
 runs:
   using: composite
   steps:
@@ -38,6 +46,10 @@ runs:
       shell: bash
       run: npm ci --omit=dev
       working-directory: ${{ inputs.working-dir}}
+    - name: Random Output
+      shell: bash
+      id: random-output
+      run: echo "random=123" >> "$GITHUB_OUTPUT"
 
     #/ The 2 ifs can also be used in a single step like:
     # - name: Install dependencies
