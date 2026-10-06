@@ -18,6 +18,7 @@ def ping_url(url, delay, max_trials):
             print(f"Invalid URL: {url}. Please provide valid URL.")
             return False
     return False
+
 def run():
     website_url = os.getenv("INPUT_URL")
     delay = int(os.getenv("INPUT_DELAY"))
