@@ -65,7 +65,9 @@ async function run() {
         ...commonExecOpts
     });
 
+    let UpdatesAvailable = false;
     if(gitStatus.stdout.length > 0){
+        updatesAvailable = true;
         logger.debug('There are updates available!');
         logger.debug('Setting up git');
         await setupGit();
@@ -105,6 +107,9 @@ async function run() {
     } else {
         logger.info('No updates at this point in time.')
     }
+
+    logger.debug(`Setting output for updates-available to ${ updatesAvailable }`);
+    core.setOutput('updates-available', updatesAvailable);
 
 }
 run();
