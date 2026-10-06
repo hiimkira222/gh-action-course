@@ -30,8 +30,9 @@ async function run() {
         cwd: workingDir
     };
 
-    logger.debug('Validate inputs - base branch, head-branch, working directory');
     core.setSecret(ghToken);
+
+    logger.debug('Validate inputs base-branch, head-branch, working-directory');
 
     if(!validateBranchName({ branchName: baseBranch })) {
         core.setFailed('Invalid base branch name. Branch names should only include characters, dots, numbers, hyphens, underscores, and forward slashes.')
