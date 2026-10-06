@@ -14,6 +14,11 @@ inputs:
     default: '5'
     required: false
 
+outputs:
+  website-reachable:
+    description: Whether the URL is reachable or not
+    value: ${{steps.ping-url.outputs.website-reachable}}
+
 runs:
   using: docker
   image: Dockerfile
