@@ -10,7 +10,9 @@ const validateBranchName = ({ branchName }) => /^[a-zA-Z0-9_\-\.\/]+$/.test(bran
 const validateDirectoryName = ({ dirName }) => /^[a-zA-Z0-9_\-\/]+$/.test(dirName);
 const setupLogger = ({debug, prefix} = {debug: false, prefix: ''}) => {
     debug: (message) => {
-        core.info(`DEBUG ${prefix}${prefix ? ' : ' : ''}${message}`);
+        if(debug) {
+            core.info(`DEBUG ${prefix}${prefix ? ' : ' : ''}${message}`);
+        }
     }
     info: (message) => {
         core.info(`${prefix}${prefix ? ' : ' : ''}${message}`);
@@ -26,6 +28,7 @@ async function run() {
     const ghToken = core.getInput('gh-token', { required: true});
     const debug = core.getBooleanInput('debug');
     const logger = setupLogger({ debug, prefix: '[js-dependency-update]' });
+    
     const commonExecOpts = {
         cwd: workingDir
     };
