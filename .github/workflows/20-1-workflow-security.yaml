@@ -7,7 +7,7 @@ jobs:
     safer-pr:
         runs-on: ubuntu-latest
         steps:
-            - name:
+            - name: Checkout Code
               uses: actions/checkout@v7
             - name: Check PR title
               env:
@@ -23,10 +23,10 @@ jobs:
     js-safer-pr:
         runs-on: ubuntu-latest
         steps:
-            - name:
+            - name: Checkout Code
               uses: actions/checkout@v7
             - name: Check PR title
-              uses: ./github/actions/security-safe-input
+              uses: ./.github/actions/security-safe-input
               with:
                 pr-title: ${{ github.event.pull_request.title }}
             
