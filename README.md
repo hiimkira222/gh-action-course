@@ -1,3 +1,1 @@
-pull request for 09-functions
-
-testing
+Repository containing all examples and notes for the GitHub Actions course.
